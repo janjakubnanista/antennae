@@ -1,0 +1,45 @@
+{
+  "name": "whiskers",
+  "version": "0.0.1",
+  "description": "A wrapper around mustache.js template engine that allows you to render your templates easily.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "karma start karma.conf.js --single-run --no-auto-watch",
+    "tdd": "karma start karma.conf.js --no-single-run --auto-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janjakubnanista/whiskers.git"
+  },
+  "keywords": [
+    "JS",
+    "templates",
+    "mustache",
+    "DOM"
+  ],
+  "author": "Jan Jakub Nanista <jan.jakub.nanista@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/janjakubnanista/whiskers/issues"
+  },
+  "homepage": "https://github.com/janjakubnanista/whiskers#readme",
+  "devDependencies": {
+    "babel-eslint": "^4.0.10",
+    "eslint": "^1.2.1",
+    "expect.js": "^0.3.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-mocha": "^1.0.1",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sinon-expect": "^0.1.4",
+    "karma-spec-reporter": "0.0.16",
+    "karma-webpack": "1.7.0",
+    "mocha": "2.1.0",
+    "phantomjs-prebuilt": "^2.1.7",
+    "webpack": "^1.4.15"
+  },
+  "dependencies": {
+    "mustache": "^2.2.1"
+  }
+}
