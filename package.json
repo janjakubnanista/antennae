@@ -2,7 +2,10 @@
   "name": "whiskers",
   "version": "0.0.1",
   "description": "A wrapper around mustache.js template engine that allows you to render your templates easily.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "test": "karma start karma.conf.js --single-run --no-auto-watch",
     "tdd": "karma start karma.conf.js --no-single-run --auto-watch"

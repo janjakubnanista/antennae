@@ -1,4 +1,6 @@
 test
+karma.conf.js
 
 .eslintrc
 .eslintignore
+.travis.yml

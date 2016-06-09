@@ -3,7 +3,7 @@
 require('mocha');
 
 var expect = require('expect.js');
-var whiskers = require('../src');
+var whiskers = require('../lib');
 
 function createScript(content, attributes) {
     var script = document.createElement('script');
@@ -73,7 +73,7 @@ describe('whiskers', function() {
         });
 
         it('should remove CDATA markup element', function() {
-            document.body.appendChild(createScript('<![CDATA[A template]]>', { type: 'text/html', id: 'template-1' }));
+            document.body.appendChild(createScript('\n\t<![CDATA[\n\t\tA template\n\t]]>\n', { type: 'text/html', id: 'template-1' }));
 
             whiskers.load();
 
