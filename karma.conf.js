@@ -3,6 +3,9 @@
 var path = require('path');
 
 module.exports = function(config) {
+    var isTravis = !!process.env.TRAVIS;
+    var browsers = isTravis ? ['ChromeTravis', 'PhantomJS'] : ['Chrome', 'Firefox', 'PhantomJS'];
+
     config.set({
 
         // frameworks to use
@@ -48,7 +51,7 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome', 'Firefox', 'PhantomJS'],
+        browsers: browsers,
 
 
         // Continuous Integration mode
@@ -63,6 +66,13 @@ module.exports = function(config) {
             resolve: {
                 root: path.resolve('./test'),
                 // modulesDirectories: ['node_modules']
+            }
+        },
+
+        customLaunchers: {
+            ChromeTravis: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
             }
         }
     });
