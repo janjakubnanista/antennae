@@ -1,5 +1,7 @@
-# antennae
+# Antennae
 A wrapper around mustache.js template engine that allows you to render your templates easily.
+
+[![Build Status](https://travis-ci.org/janjakubnanista/antennae.svg?branch=master)](https://travis-ci.org/janjakubnanista/antennae)
 
 ## Motivation
 
