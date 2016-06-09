@@ -1,16 +1,16 @@
-# whiskers
+# antennae
 A wrapper around mustache.js template engine that allows you to render your templates easily.
 
 ## Motivation
 
 This module serves as a registry for your Mustache templates. It is capable of automatically going through DOM in the browser
-and creating a dictionary of templates. You can then easily render these by calling `whiskers.render(templateName, optionalTemplateData)`.
+and creating a dictionary of templates. You can then easily render these by calling `antennae.render(templateName, optionalTemplateData)`.
 
 ## Installation
 
-whiskers is available as an NPM module. To install it please run
+antennae is available as an NPM module. To install it please run
 
-    $ npm install --save whiskers
+    $ npm install --save antennae
 
 from your project root folder.
 
@@ -20,11 +20,11 @@ The usage generally consist of two phases - template registration and template r
 
 ### Template registration
 
-There are two basic ways of registering templates using `whiskers`.
+There are two basic ways of registering templates using `antennae`.
 
 #### Parsing templates from DOM
 
-This is the major use case for this module. `whiskers` will traverse your DOM looking for `<script>` tags with type set to `text/html`. These templates will be registered on `whiskers` object using the `data-name` or `id` attribute of the corresponding `<script>` tag.
+This is the major use case for this module. `antennae` will traverse your DOM looking for `<script>` tags with type set to `text/html`. These templates will be registered on `antennae` object using the `data-name` or `id` attribute of the corresponding `<script>` tag.
 
 An example of this are the following templates:
 
@@ -36,7 +36,7 @@ An example of this are the following templates:
         Hello {{name}}!
     </script>
 
-The following templates will cause `whiskers` to throw an error since the `data-name` and `id` attributes are missing:
+The following templates will cause `antennae` to throw an error since the `data-name` and `id` attributes are missing:
 
     <script type="text/html">
         Hello {{name}}!
@@ -62,18 +62,18 @@ You can also use `<![CDATA]]>` markup elements if you need the HTML to be XML pa
         <input {{#disabled}}disabled="disabled"{{/disabled}}/>
     </script>
 
-**If you want the templates to be automatically loaded after DOM is loaded** you can require `whiskers/lib/autoload` instead. This feature requires browser support for [document.addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [DOMContentLoaded event](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded) (IE9+):
+**If you want the templates to be automatically loaded after DOM is loaded** you can require `antennae/lib/autoload` instead. This feature requires browser support for [document.addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [DOMContentLoaded event](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded) (IE9+):
 
     // In your script file
-    require('whiskers/lib/autoload');
+    require('antennae/lib/autoload');
 
-**If you want to load the templates from DOM yourself** you can use the `whiskers.load()` method:
+**If you want to load the templates from DOM yourself** you can use the `antennae.load()` method:
 
     // In your script file
-    var whiskers = require('whiskers');
+    var antennae = require('antennae');
 
     // Then when your DOM is ready
-    whiskers.load();
+    antennae.load();
 
 #### Manually registering templates
 
@@ -82,36 +82,36 @@ This is also possible and can be used with dynamically loaded templates for exam
 The following snippet demonstrates this usage:
 
     // In your script file
-    var whiskers = require('whiskers');
+    var antennae = require('antennae');
 
     var templateName = 'my-template';
     var templateString = 'Hello {{name}}!';
 
-    whiskers.register(templateName, templateString);
+    antennae.register(templateName, templateString);
 
 ### Template rendering
 
 This process is very easy and straightforward:
 
     // In your script file
-    var whiskers = require('whiskers');
+    var antennae = require('antennae');
 
     // Your template registration code here...
 
     // And finally the actual rendering
-    var rendered = whiskers.render('my-template', { name: 'world' });
+    var rendered = antennae.render('my-template', { name: 'world' });
 
 ## API
 
-`whiskers.load()` Parses DOM and looks for `<script>` tags with type set to `text/html`. The templates from these tags are registered under names obtained from either `data-name` or `id` attributes of these script tags.
+`antennae.load()` Parses DOM and looks for `<script>` tags with type set to `text/html`. The templates from these tags are registered under names obtained from either `data-name` or `id` attributes of these script tags.
 
-`whiskers.has(String name)` Checks whether a template with specified name was registered. Returns boolean `true` or `false`.
+`antennae.has(String name)` Checks whether a template with specified name was registered. Returns boolean `true` or `false`.
 
-`whiskers.register(String name, String template)` Registers a template. **Note that manual registration does not perform `<![CDATA[]]>` removal**. Returns the `whiskers` object.
+`antennae.register(String name, String template)` Registers a template. **Note that manual registration does not perform `<![CDATA[]]>` removal**. Returns the `antennae` object.
 
-`whiskers.clear()` Unregisters all the templates. Returns `whiskers` object.
+`antennae.clear()` Unregisters all the templates. Returns `antennae` object.
 
-`whiskers.render(String name[, Object data])` Renders a template registered under the specified name. Throws an error if no such template was registered. Returns rendered template as a String.
+`antennae.render(String name[, Object data])` Renders a template registered under the specified name. Throws an error if no such template was registered. Returns rendered template as a String.
 
 ## Acknowledgements
 

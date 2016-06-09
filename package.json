@@ -1,5 +1,5 @@
 {
-  "name": "whiskers",
+  "name": "tentacles",
   "version": "0.0.1",
   "description": "A wrapper around mustache.js template engine that allows you to render your templates easily.",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/janjakubnanista/whiskers.git"
+    "url": "git+https://github.com/janjakubnanista/antennae.git"
   },
   "keywords": [
     "JS",
@@ -23,9 +23,9 @@
   "author": "Jan Jakub Nanista <jan.jakub.nanista@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/janjakubnanista/whiskers/issues"
+    "url": "https://github.com/janjakubnanista/antennae/issues"
   },
-  "homepage": "https://github.com/janjakubnanista/whiskers#readme",
+  "homepage": "https://github.com/janjakubnanista/antennae#readme",
   "devDependencies": {
     "babel-eslint": "^4.0.10",
     "eslint": "^1.2.1",
