@@ -26,7 +26,7 @@ There are two basic ways of registering templates using `antennae`.
 
 #### Parsing templates from DOM
 
-This is the major use case for this module. `antennae` will traverse your DOM looking for `<script>` tags with type set to `text/html`. These templates will be registered on `antennae` object using the `data-name` or `id` attribute of the corresponding `<script>` tag.
+This is the major use case for this module. `antennae` will traverse your DOM looking for `<script>` tags with type set to `text/html` or `x-tmpl-mustache`. These templates will be registered on `antennae` object using the `data-name` or `id` attribute of the corresponding `<script>` tag.
 
 An example of this are the following templates:
 
@@ -35,6 +35,10 @@ An example of this are the following templates:
     </script>
 
     <script type="text/html" id="my-template">
+        Hello {{name}}!
+    </script>
+
+    <script type="x-tmpl-mustache" id="my-template">
         Hello {{name}}!
     </script>
 
@@ -62,6 +66,12 @@ You can also use `<![CDATA]]>` markup elements if you need the HTML to be XML pa
     <!-- Is in effect the same as this one -->
     <script type="text/html" id="my-template">
         <input {{#disabled}}disabled="disabled"{{/disabled}}/>
+    </script>
+
+To explicitly exclude an otherwise valid template you can set `data-antennae-ignore` HTML attribute on a `<script>` tag to any non-empty value:
+
+    <script type="text/html" id="my-template" data-antennae-ignore="true">
+        Hello {{name}}!
     </script>
 
 **If you want the templates to be automatically loaded after DOM is loaded** you can require `antennae/lib/autoload` instead. This feature requires browser support for [document.addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [DOMContentLoaded event](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded) (IE9+):

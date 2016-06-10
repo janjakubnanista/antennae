@@ -56,6 +56,14 @@ describe('antennae', function() {
             expect(antennae.has('template-1')).to.be(true);
         });
 
+        it('should not load a template when data-ignore HTML attribute is set to truthy value', function() {
+            this.root.appendChild(createScript('', { type: 'text/html', id: 'template-1', 'data-ignore': 'yes' }));
+
+            antennae.load();
+
+            expect(antennae.has('template-1')).to.be(false);
+        });
+
         it('should use data-name attribute for template name if present', function() {
             this.root.appendChild(createScript('', { type: 'text/html', 'data-name': 'template-1' }));
 
