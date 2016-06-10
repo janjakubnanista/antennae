@@ -30,7 +30,7 @@ describe('antennae', function() {
     });
 
     context('load()', function() {
-        it('should not load a template when type is not text/html', function() {
+        it('should not load a template when type is neither text/html nor x-tmpl-mustache', function() {
             this.root.appendChild(createScript('', { type: 'text/javascript', id: 'template-1' }));
             this.root.appendChild(createScript('', { id: 'template-2' }));
 
@@ -42,6 +42,14 @@ describe('antennae', function() {
 
         it('should load a template when type is text/html', function() {
             this.root.appendChild(createScript('', { type: 'text/html', id: 'template-1' }));
+
+            antennae.load();
+
+            expect(antennae.has('template-1')).to.be(true);
+        });
+
+        it('should load a template when type is x-tmpl-mustache', function() {
+            this.root.appendChild(createScript('', { type: 'x-tmpl-mustache', id: 'template-1' }));
 
             antennae.load();
 
