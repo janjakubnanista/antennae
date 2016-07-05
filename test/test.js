@@ -95,6 +95,37 @@ describe('antennae', function() {
 
             expect(antennae.render('template-1')).to.be('A template');
         });
+
+        context('options.processTemplate', function() {
+            it('should pass the template string, template name and the script tag through options.processTemplate', function() {
+                document.body.appendChild(createScript('A template', { type: 'text/html', id: 'template-1' }));
+
+                var called = false;
+                antennae.load({
+                    processTemplate: function(template, name, tag) {
+                        expect(template).to.be('A template');
+                        expect(name).to.be('template-1');
+                        expect(tag).to.be.a(HTMLElement);
+
+                        called = true;
+                    }
+                });
+
+                expect(called).to.be(true);
+            });
+
+            it('should use the output from options.processTemplate', function() {
+                document.body.appendChild(createScript('A template', { type: 'text/html', id: 'template-1' }));
+
+                antennae.load({
+                    processTemplate: function() {
+                        return 'B template';
+                    }
+                });
+
+                expect(antennae.render('template-1')).to.be('B template');
+            });
+        });
     });
 
     context('register()', function() {
