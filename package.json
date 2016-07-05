@@ -1,6 +1,6 @@
 {
   "name": "antennae",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A wrapper around mustache.js template engine that allows you to render your templates easily.",
   "main": "lib/index.js",
   "files": [
