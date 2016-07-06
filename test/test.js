@@ -89,7 +89,7 @@ describe('antennae', function() {
         });
 
         it('should remove CDATA markup element', function() {
-            document.body.appendChild(createScript('\n\t<![CDATA[\n\t\tA template\n\t]]>\n', { type: 'text/html', id: 'template-1' }));
+            document.body.appendChild(createScript('\n\t<![CDATA[\r\n\t\tA template\r\n\t]]>\n', { type: 'text/html', id: 'template-1' }));
 
             antennae.load();
 
