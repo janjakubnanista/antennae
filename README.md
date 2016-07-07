@@ -77,7 +77,12 @@ To explicitly exclude an otherwise valid template you can set `data-antennae-ign
 **If you want the templates to be automatically loaded after DOM is loaded** you can require `antennae/lib/autoload` instead. This feature requires browser support for [document.addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [DOMContentLoaded event](https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded) (IE9+):
 
     // In your script file
-    require('antennae/lib/autoload');
+    // Do not forget to execute the autoload module!
+    require('antennae/lib/autoload')();
+
+    // You can optionally pass a hash of options to this function
+    var options = { processTemplate: function() { ... } };
+    require('antennae/lib/autoload')(options);
 
 **If you want to load the templates from DOM yourself** you can use the `antennae.load()` method:
 
@@ -86,6 +91,10 @@ To explicitly exclude an otherwise valid template you can set `data-antennae-ign
 
     // Then when your DOM is ready
     antennae.load();
+
+    // You can optionally pass a hash of options to this function
+    var options = { processTemplate: function() { ... } };
+    antennae.load(options);
 
 #### Manually registering templates
 
@@ -115,15 +124,17 @@ This process is very easy and straightforward:
 
 ## API
 
-`antennae.load()` Parses DOM and looks for `<script>` tags with type set to `text/html`. The templates from these tags are registered under names obtained from either `data-name` or `id` attributes of these script tags.
+&bull; `antennae.load(Object options)` Parses DOM and looks for `<script>` tags with type set to `text/html`. The templates from these tags are registered under names obtained from either `data-name` or `id` attributes of these script tags. The only supported option is `processTemplate`:
 
-`antennae.has(String name)` Checks whether a template with specified name was registered. Returns boolean `true` or `false`.
+`Function processTemplate(String templateString, String name, HTMLScriptElement tag)` allows you to make adjustments to template string after it is retrieved from HTML and before it is registered. You can use this hook to replace HTML entities etc.
 
-`antennae.register(String name, String template)` Registers a template. **Note that manual registration does not perform `<![CDATA[]]>` removal**. Returns the `antennae` object.
+&bull; `antennae.has(String name)` Checks whether a template with specified name was registered. Returns boolean `true` or `false`.
 
-`antennae.clear()` Unregisters all the templates. Returns `antennae` object.
+&bull; `antennae.register(String name, String template)` Registers a template. **Note that manual registration does not perform `<![CDATA[]]>` removal**. Returns the `antennae` object.
 
-`antennae.render(String name[, Object data])` Renders a template registered under the specified name. Throws an error if no such template was registered. Returns rendered template as a String.
+&bull; `antennae.clear()` Unregisters all the templates. Returns `antennae` object.
+
+&bull; `antennae.render(String name[, Object data])` Renders a template registered under the specified name. Throws an error if no such template was registered. Returns rendered template as a String.
 
 ## Acknowledgements
 
