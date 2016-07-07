@@ -130,6 +130,8 @@ This process is very easy and straightforward:
 
 &bull; `antennae.has(String name)` Checks whether a template with specified name was registered. Returns boolean `true` or `false`.
 
+&bull; `antennae.get(String name)` Returns a registered template or throws an error if there is no template registered under `name`.
+
 &bull; `antennae.register(String name, String template)` Registers a template. **Note that manual registration does not perform `<![CDATA[]]>` removal**. Returns the `antennae` object.
 
 &bull; `antennae.clear()` Unregisters all the templates. Returns `antennae` object.

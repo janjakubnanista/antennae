@@ -174,6 +174,20 @@ describe('antennae', function() {
         });
     });
 
+    context('get()', function() {
+        it('should return a template string if a template was registered', function() {
+            antennae.register('template-1', 'A name: {{name}}');
+
+            expect(antennae.get('template-1')).to.be('A name: {{name}}');
+        });
+
+        it('should throw an error if a template was not registered', function() {
+            expect(function() {
+                antennae.get('template-1');
+            }).to.throwError('Could not find template "template-1"');
+        });
+    });
+
     context('clear()', function() {
         it('should unregister all templates', function() {
             antennae.register('template-1', 'A name: {{name}}');
